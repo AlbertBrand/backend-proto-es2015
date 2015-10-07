@@ -1,0 +1,33 @@
+{
+  "name": "backend-proto-es2015",
+  "version": "0.1.0",
+  "description": "Backend proto ES2015",
+  "author": "Albert Brand <abrand@xebia.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertBrand/backend-proto-es2015.git"
+  },
+  "dependencies": {
+    "co": "^4.6.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "start": "node -e 'require(\"./src/server\").listen(7000)'",
+    "test": "mocha $npm_package_config_MOCHA_OPTS"
+  },
+  "config": {
+    "MOCHA_OPTS": "test/ --recursive"
+  },
+  "main": "src/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "bugs": {
+    "url": "https://github.com/AlbertBrand/backend-proto-es2015/issues"
+  },
+  "homepage": "https://github.com/AlbertBrand/backend-proto-es2015#readme"
+}

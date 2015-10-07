@@ -1,2 +1,4 @@
 # backend-proto-es2015
-Backend proto ES2015
+
+Backend prototype ES2015 code.
+
