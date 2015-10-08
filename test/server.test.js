@@ -15,7 +15,7 @@ describe('server', () => {
       this.timeout(4000);
       getBody(`http://localhost:${port}/async`, (res, body) => {
         assert.equal(200, res.statusCode);
-        assert.equal('asynchronous result: 1', body);
+        assert.equal('asynchronous result: 123 579', body);
         done();
       });
     });

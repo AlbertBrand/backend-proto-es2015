@@ -7,13 +7,9 @@ const http = require('http'),
 const routeHandlers = {
   '/async': (req, res) => {
     co(function *() {
-      let a = 0;
-      yield sleep(1000);
-
-      a++;
-      yield sleep(2000);
-
-      res.end(`asynchronous result: ${a}`);
+      const a = yield sleep(1000, 123);
+      const b = yield sleep(2000, a + 456);
+      res.end(`asynchronous result: ${a} ${b}`);
 
     }).catch(() => {
       res.writeHead(500);
