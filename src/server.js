@@ -6,6 +6,11 @@ const http = require('http'),
 
 const routeHandlers = new Map();
 
+routeHandlers.set('/', (req, res) => {
+  res.writeHead(200);
+  res.end('okay');
+});
+
 routeHandlers.set('/async', (req, res) => {
   co(function *() {
     const a = yield sleep(1000, 123);
@@ -16,11 +21,6 @@ routeHandlers.set('/async', (req, res) => {
     res.writeHead(500);
     res.end('internal error');
   });
-});
-
-routeHandlers.set('/', (req, res) => {
-  res.writeHead(200);
-  res.end('okay');
 });
 
 const server = http.createServer((req, res) => {
