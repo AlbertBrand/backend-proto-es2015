@@ -2,6 +2,7 @@
 
 const server = require('../src/server'),
   getBody = require('./getBody'),
+  co = require('co'),
   assert = require('assert'),
   port = 6000;
 
@@ -12,9 +13,10 @@ describe('server', () => {
 
   describe('/', () => {
     it('should return 200 and respond with okay', (done) => {
-      getBody(`http://localhost:${port}`, (res, body) => {
-        assert.equal(200, res.statusCode);
-        assert.equal('okay', body);
+      co(function *() {
+        const ret = yield getBody(`http://localhost:${port}`);
+        assert.equal(200, ret.res.statusCode);
+        assert.equal('okay', ret.body);
         done();
       });
     });
@@ -23,9 +25,10 @@ describe('server', () => {
   describe('/async', () => {
     it('should return 200 and respond with message', function (done) {
       this.timeout(4000);
-      getBody(`http://localhost:${port}/async`, (res, body) => {
-        assert.equal(200, res.statusCode);
-        assert.equal('asynchronous result: 123 579', body);
+      co(function *() {
+        const ret = yield getBody(`http://localhost:${port}/async`);
+        assert.equal(200, ret.res.statusCode);
+        assert.equal('asynchronous result: 123 579', ret.body);
         done();
       });
     });
@@ -33,9 +36,10 @@ describe('server', () => {
 
   describe('/abc', () => {
     it('should return 404', (done) => {
-      getBody(`http://localhost:${port}/abc`, (res, body) => {
-        assert.equal(404, res.statusCode);
-        assert.equal('not found', body);
+      co(function *() {
+        const ret = yield getBody(`http://localhost:${port}/abc`);
+        assert.equal(404, ret.res.statusCode);
+        assert.equal('not found', ret.body);
         done();
       });
     });
